@@ -199,7 +199,7 @@ class Dashboard extends Component {
             key: this.state.selectedPatient.key,
             name: "",
             phone: "",
-            isKlabin: true
+            isCompany: true
         };
         this.setState({
             touchpoints: [...this.state.touchpoints, newTouchPoint]
@@ -213,7 +213,7 @@ class Dashboard extends Component {
         if (e.target) {
             touchpoints[idx][e.target.name] = e.target.value;
         } else {
-            touchpoints[idx].isKlabin = e;
+            touchpoints[idx].isCompany = e;
         }
 
         this.setState({
@@ -262,7 +262,7 @@ class Dashboard extends Component {
             <Layout style={{ minHeight: '100vh' }} >
                 <Sider style={{ background: "#fff", zIndex: 0 }} collapsed={true}>
                     <div style={{ padding: 10, textAlign: "center" }}>
-                        <img width="40px" src="https://s3-sa-east-1.amazonaws.com/static-c4/klabin-logo.png" alt="logo-klabin" />
+                        <img width="40px" src="https://via.placeholder.com/40" alt="logo-empresa" />
                     </div>
                     <Menu mode="inline">
                         <Menu.Item key="1">
@@ -426,7 +426,7 @@ class Dashboard extends Component {
                                                                         <List.Item.Meta
                                                                             description={
                                                                                 <div>
-                                                                                    <strong>{moment.unix(item.createdAt._seconds).format("L H:mm:ss")}</strong> - {item.text || (item.isKlabin ? "O paciente teve contato com o funcionário Klabin " + item.name + " com telefone: " + item.phone : "O paciente teve contato com " + item.name + " e o telefone para contato é: " + item.phone)}
+                                                                                    <strong>{moment.unix(item.createdAt._seconds).format("L H:mm:ss")}</strong> - {item.text || (item.isCompany ? "O paciente teve contato com o funcionário da <nome-empresa> " + item.name + " com telefone: " + item.phone : "O paciente teve contato com " + item.name + " e o telefone para contato é: " + item.phone)}
                                                                                 </div>
                                                                             }
                                                                         />
@@ -546,7 +546,7 @@ class Dashboard extends Component {
                                                                 <tr>
                                                                     <th>Nome</th>
                                                                     <th>Telefone</th>
-                                                                    <th>É Klabin?</th>
+                                                                    <th>É nome-empresa?</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody className="ant-table-tbody">
@@ -574,8 +574,8 @@ class Dashboard extends Component {
                                                                             </td>
                                                                             <td>
                                                                                 <Switch
-                                                                                    name="isKlabin"
-                                                                                    checked={this.state.touchpoints[idx].isKlabin}
+                                                                                    name="isCompany"
+                                                                                    checked={this.state.touchpoints[idx].isCompany}
                                                                                     onChange={this.handleChangeTouchpointRow(idx)}
                                                                                     className="form-control"
                                                                                 />
